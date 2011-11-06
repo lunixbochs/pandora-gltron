@@ -70,18 +70,22 @@ int SystemCreateWindow(char *name) {
     fprintf(stderr, "[system] Couldn't set GL mode: %s\n", SDL_GetError());
     exit(1); /* OK: critical, no visual */
   }
-  EGL_Init();
 
+  if (!EGL_Open()) {
+    fprintf(stderr, "[system] Couldn't initialize EGL.");
+  }
+
+/*
   SDL_WM_SetCaption("GLtron", "");
 
   SDL_SysWMinfo sysInfo;
   SDL_VERSION(&sysInfo.version);
 
   if(SDL_GetWMInfo(&sysInfo) <= 0)
-    exit(1); /* OK: critical, no visual */
+    exit(1); // OK: critical, no visual
+*/
 
-  if (EGL_Init() <= 0)
-    exit(1);
+  EGL_Init();
 
   /*
   swl_set_config(SWLC_OPENGL_VERSION, SWLV_OPENGL_ES);
