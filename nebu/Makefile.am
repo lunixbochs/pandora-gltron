@@ -11,6 +11,6 @@ libNebu_a_LIBADD = \
 	audio/libaudio.a \
 	video/libvideo.a \
 	input/libinput.a
-
-## $(top_srcdir)/lua/src/liblua.a \
-## $(top_srcdir)/lua/src/lib/liblualib.a
+#	$(top_srcdir)/lua/src/liblua.a \
+#	$(top_srcdir)/lua/src/lib/liblualib.a \
+#	$(top_srcdir)/eglport/libeglport.a

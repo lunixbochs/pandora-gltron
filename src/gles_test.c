@@ -1,8 +1,8 @@
 
-#include <gles\gl.h>
+#include <GLES/gl.h>
 #include <stdio.h>
 #include <SDL.h>
-
+#include "eglport.h"
 
 static const GLbyte vertices[3 * 3] =
 	{
@@ -166,7 +166,7 @@ int main(int argc, char** argv)
 		height = modes[0]->h;
 		}
 	
-	SDL_GL_LoadLibrary(NULL);	
+//	SDL_GL_LoadLibrary(NULL);	
 		
 	screen = SDL_SetVideoMode(width, height, 16, videoFlags);	
 	
@@ -205,7 +205,7 @@ int main(int argc, char** argv)
 			{
 			GLenum gl_error;
 			renderFrame();
-			SDL_GL_SwapBuffers();
+			EGL_SwapBuffers();
 			/* Check for error conditions. */
 			gl_error = glGetError();	
 			if(gl_error != GL_NO_ERROR ) 

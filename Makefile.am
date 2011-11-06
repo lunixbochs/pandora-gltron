@@ -1,4 +1,4 @@
-SUBDIRS = lua nebu src art data music scripts
+SUBDIRS = eglport lua nebu src art data music scripts
 
 bin_PROGRAMS = gltron
 
@@ -18,16 +18,25 @@ gltron_LDADD = \
 	nebu/scripting/libscripting.a \
 	nebu/filesystem/libfilesystem.a \
 	src/filesystem/libfilesystem.a \
-	nebu/base/libbase.a
+	nebu/base/libbase.a \
+	lua/src/liblua.a \
+	lua/src/lib/liblualib.a \
+	eglport/libeglport.a
+
+#LIBS = ${LIBS} -lEGL -lX11
 
 #gltron_LDFLAGS = -static
 
 AM_CFLAGS = \
 	-I@top_srcdir@/src/include \
+        -I@top_srcdir@/lua/include \
+	-I@top_srcdir@/eglport \
 	-I@top_srcdir@/nebu/include
 
 AM_CXXFLAGS = \
 	-I@top_srcdir@/src/include \
+        -I@top_srcdir@/lua/include \
+	-I@top_srcdir@/eglport \
 	-I@top_srcdir@/nebu/include
 
 tags:

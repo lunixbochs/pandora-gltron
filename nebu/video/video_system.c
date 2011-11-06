@@ -2,7 +2,7 @@
 
 #include "SDL.h"
 #include <SDL_syswm.h>
-#include <swl-utils.h>
+#include "../../eglport/eglport.h"
 #include <GLES/gl.h>
 
 static SDL_Surface *screen;
@@ -12,7 +12,7 @@ static int fullscreen;
 extern int video_initialized;
 
 void SystemSwapBuffers() {
-  swl_swap();
+  EGL_SwapBuffers();
 }
 
 void SystemInitWindow(int x, int y, int w, int h) {
@@ -44,6 +44,7 @@ void SystemInitDisplayMode(int f, unsigned char full) {
     bitdepth = 16;
   }
 
+/* FIXME: depth and stencil attributes discarded
   if(flags & SYSTEM_DEPTH)
      swl_set_config(SWLC_DEPTH_SIZE, zdepth);
 
@@ -51,6 +52,7 @@ void SystemInitDisplayMode(int f, unsigned char full) {
      swl_set_config(SWLC_STENCIL_SIZE, 8);
   else 
      swl_set_config(SWLC_STENCIL_SIZE, 0);
+*/
   
   video_initialized = 1;
   /* FIXME: bitdepth value unused */
@@ -76,18 +78,23 @@ int SystemCreateWindow(char *name) {
   if(SDL_GetWMInfo(&sysInfo) <= 0)
     exit(1); /* OK: critical, no visual */
 
+  if (EGL_Init() <= 0)
+    exit(1);
+
+  /*
   swl_set_config(SWLC_OPENGL_VERSION, SWLV_OPENGL_ES);
 
   enum swl_result result = swl_context_allocate(sysInfo.info.x11.window, XOpenDisplay(0));
 
   if(result != SWLR_OK) {
     fprintf(stderr, "[system] Couldn't create context, %d\n", result);
-    exit(1); /* OK: critical, no visual */
+    exit(1);
   }
+  */
 
   glClearColor(0,0,0,0);
   glClear(GL_COLOR_BUFFER_BIT);
-  swl_swap();
+  EGL_SwapBuffers();
   return 1;
 }
 
@@ -100,7 +107,7 @@ void SystemDestroyWindow(int id) {
 	 * caused by this, but I can't remember what they where
 	 */
 		 
-  swl_quit();
+  EGL_Destroy();
   SDL_QuitSubSystem(SDL_INIT_VIDEO);
   video_initialized = 0;
 }

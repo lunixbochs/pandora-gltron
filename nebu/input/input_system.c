@@ -9,15 +9,21 @@
 static float joystick_threshold = 0;
 
 void SystemGrabInput() {
+#ifndef PANDORA
   SDL_WM_GrabInput(SDL_GRAB_ON);
+#endif
 }
 
 void SystemUngrabInput() {
+#ifndef PANDORA
   SDL_WM_GrabInput(SDL_GRAB_OFF);
+#endif
 }
 
 void SystemWarpPointer(int x, int y) {
+#ifndef PANDORA
   SDL_WarpMouse(x, y);
+#endif
 }
 
 void SystemHidePointer() {

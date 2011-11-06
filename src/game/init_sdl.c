@@ -20,7 +20,7 @@ void videoInit(void) {
   else video_initialized = 1;
   
   
-  SDL_GL_LoadLibrary(NULL);
+//  SDL_GL_LoadLibrary(NULL);
 }
 
 void inputInit(void) {
