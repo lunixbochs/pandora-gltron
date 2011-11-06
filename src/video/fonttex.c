@@ -201,23 +201,6 @@ void ftxRenderString(FontTex *ftx, const char *string, int len) {
     cx = (float)(index % w) / (float)w;
     cy = (float)(index / w) / (float)w;
     /* draw quad */
-    /* fprintf(stderr, FTX_ERR "coords: tex %d (%.2f, %.2f), %.2f\n", */
-    /*     bound, cx, cy, cw); */
-
-    //TODO:DONE redo this for GLES
-    /*glBegin(GL_QUADS);
-    glTexCoord2f(cx, 1 - cy - cw);
-    glVertex2f(i, 0);
-    glTexCoord2f(cx + cw, 1 - cy - cw);
-    glVertex2f(i + 1, 0);
-    glTexCoord2f(cx + cw, 1 - cy);
-    glVertex2f(i + 1, 1);
-    glTexCoord2f(cx, 1 - cy);
-    glVertex2f(i, 1);
-    glEnd();*/
-    
-    //draw_textured_rectangle_size2vi(i, 0, i + 1, 1,cx,1 - cy - cw, cx + cw, 1 - cy);
-    
     
     FillVertex2v(texts[0],cx,1 - cy - cw);
     FillVertex2v(verts[0],i,0);

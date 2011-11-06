@@ -116,7 +116,6 @@ void doCycleTurnRotation(PlayerVisual *pV, Player *p) {
     else if((p->data->last_dir == 3 && p->data->dir == 2) ||
 	    (p->data->last_dir == 0 && p->data->dir == 3))
       axis = -1.0;
-    //TODO:DONE redo this for gles
     glRotatef(neigung * sin(PI * time / TURN_LENGTH),
 	      0.0, axis * neigung_dir, 0.0); 
   }
@@ -144,7 +143,6 @@ void drawCycleShadow(PlayerVisual *pV, Player *p, int lod, int drawTurn) {
     glStencilOp(GL_REPLACE, GL_REPLACE, GL_REPLACE);
     glStencilFunc(GL_GREATER, 1, 1);
     glEnable(GL_BLEND);
-    //TODO:DONE Redo this
     glColor4fv(shadow_color);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   } else {

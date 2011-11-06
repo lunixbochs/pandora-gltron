@@ -63,8 +63,6 @@ void drawMenu(Visual *d) {
   size = (hsize < vsize) ? hsize : vsize;
   
   lineheight = (int)( (float) size * MENU_TEXT_LINEHEIGHT);  
-
-  /* printf("%d %d %d %d %d\n", x, y, size, maxw, pCurrent->nEntries); */
   /* draw the entries */
 
   scripting_Run("return Menu.active");
@@ -90,16 +88,11 @@ void drawMenu(Visual *d) {
       for(j = 0; j < 4; j++) {
     	  color[j] = t * active1[j] + (1 - t) * active2[j];
       }
-      //TODO:DONE Redo for gles
       glColor4fv(color);
-      
-      /* fprintf(stderr, "%.2f: %.2f %.2f %.2f\n", 
-	 t, color[0], color[1], color[2]); */
     } else {
       float color[4];
 			scripting_GetGlobal("menu_item", NULL);
       scripting_GetFloatArrayResult(color, 4);
-      //TODO:DONE Redo for gles
       glColor4fv(color);
     }
 

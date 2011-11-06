@@ -43,7 +43,7 @@ void draw2D( Visual *d ) {
 		glViewport(d->vp_x, d->vp_y, d->vp_w, d->vp_h);
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		//TODO: DONE redo for gles
+
 		glOrthof(0, width, 0, height, 0, 1);
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
@@ -64,16 +64,6 @@ void draw2D( Visual *d ) {
 
 			glEnable(GL_BLEND);
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-			
-			
-			//TODO:DONE Redo for Gles
-			/*glBegin(GL_QUADS);
-			glColor4f(0.7f, 0.7f, 0.7f, 0.3f);
-			glVertex2f(0, 0);
-			glVertex2f(w, 0);
-			glVertex2f(w, h);
-			glVertex2f(0, h);
-			glEnd();*/
 			
 			glColor4f(0.7f, 0.7f, 0.7f, 0.3f);
 			//draw_rectangle2v(0,0,w,h);
@@ -146,7 +136,6 @@ void draw2D( Visual *d ) {
                     p->data->trail_height / TRAIL_HEIGHT);
         } else {
           glBlendFunc(GL_ONE, GL_ONE);
-          //TODO:DONE redo for gles
           glColor3fv(pV->pColorAlpha);
         }
         

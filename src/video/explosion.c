@@ -22,7 +22,7 @@ static void drawWave(double radius) {
   double start_angle = 270.0 * (PI/180);
   
   for (i = 0; i < SHOCKWAVE_SEGMENTS; i++) {
-	//TODO: redo for symbian  
+    //TODO: redo for symbian  
     /*glBegin(GL_QUAD_STRIP);
     angle = start_angle;
     for (j = 0; j <= SHOCKWAVE_SEGMENTS; j++) {

@@ -51,12 +51,10 @@ void drawPause(Visual *display) {
       message = buf;
       sprintf(message, winner, game->winner + 1);
     } else {
-    //TODO:DONE redo for gles	
     	glColor4f(1.0, (sin(d) + 1) / 2, (sin(d) + 1) / 2,1.0f);
       message = nowinner;
     }
   } else {
-	  //TODO:DONE redo for gles
 	  glColor4f(1.0, (sin(d) + 1) / 2, (sin(d) + 1) / 2,1.0f);
     message = pause;
   }

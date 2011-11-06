@@ -51,17 +51,6 @@ void drawSkybox(int grid_size) {
   
   glEnable(GL_TEXTURE_2D);
   glDepthMask(GL_FALSE);
-  //TODO:DONE REdo for gles
-  /*glColor3f(1.0, 1.0, 1.0);
-  for(i = 0; i < 6; i++) {
-    bindSkyboxTexture(i);
-    glBegin(GL_QUADS);
-    for(j = 0; j < 4; j++) {
-      glTexCoord2fv( uv[j] );
-      glVertex3f( sides[i][j][0] * d, sides[i][j][1] * d, sides[i][j][2] * d );
-    }
-    glEnd();
-  }*/
   
   glEnableClientState (GL_TEXTURE_COORD_ARRAY);
   glDisableClientState (GL_NORMAL_ARRAY);  
@@ -71,11 +60,6 @@ void drawSkybox(int grid_size) {
   glColor3f(1.0, 1.0, 1.0);
     for(i = 0; i < 6; i++) {
       bindSkyboxTexture(i);
-      //glBegin(GL_QUADS);
-      /*for(j = 0; j < 4; j++) {
-        glTexCoord2fv( uv[j] );
-        glVertex3f( sides[i][j][0] * d, sides[i][j][1] * d, sides[i][j][2] * d );
-      }*/
       
       FillVertex2v(texts[0],uv[0][0],uv[0][1]);
 	  FillVertex3v(verts[0],sides[i][0][0] * d, sides[i][0][1] * d, sides[i][0][2] * d);

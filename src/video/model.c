@@ -282,7 +282,7 @@ void drawModel(Mesh *pMesh, MeshType iType) {
     iFaceSize = 3;
     break;
   case QUAD_MESH:
-	  //TODO: Fix this for GLES
+    //TODO: Fix this for GLES
     //primitive = GL_QUADS;
     //iFaceSize = 4;
     return;
@@ -303,7 +303,6 @@ void drawModel(Mesh *pMesh, MeshType iType) {
     glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS,
 		pMesh->pMaterials[i].shininess);
 
-    //TODO:FIXED!
     glDrawElements(primitive, iFaceSize * pMesh->pnFaces[i],
     		GL_UNSIGNED_SHORT, pMesh->ppIndices[i]);
     
@@ -352,8 +351,6 @@ void drawModelExplosion(Mesh *pMesh, float fRadius) {
       glTranslatef(fRadius * (*(normal + 0) + vectors[j % EXP_VECTORS][0]),
           fRadius * (*(normal + 1) + vectors[j % EXP_VECTORS][1]),
           fabsf(fRadius * (*(normal + 2) + vectors[j % EXP_VECTORS][2]) ));
-      //TODO: DONE Redo for gles
-      //glBegin(GL_TRIANGLES);
       for(k = 0; k < 3; k++) {
         normal = pMesh->pNormals + 3 * pMesh->ppIndices[i][3 * j + k];
         vertex = pMesh->pVertices + 3 * pMesh->ppIndices[i][3 * j + k];
@@ -361,10 +358,7 @@ void drawModelExplosion(Mesh *pMesh, float fRadius) {
         glNormalPointer(GL_FLOAT, 0, normal);
         
         glDrawArrays(GL_TRIANGLES, 0, 3);
-        //glNormal3fv(normal);
-        //glVertex3fv(vertex);
       }
-      //glEnd();
       glPopMatrix();
     }
     polycount += pMesh->pnFaces[i];

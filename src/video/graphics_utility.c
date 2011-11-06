@@ -12,7 +12,6 @@ void rasonly(Visual *d) {
   /* do rasterising only (in local display d) */
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  //TODO:DONE redo for gles
   glOrthof(0.0f, (GLfloat) d->vp_w, 0.0f, (GLfloat) d->vp_h, 0.0f, 1.0f);
   checkGLError("rasonly");
   glMatrixMode(GL_MODELVIEW);
@@ -27,7 +26,6 @@ void doPerspective(float fov, float ratio, float znear, float zfar) {
 
   top = tanf( fov * PI / 360.0 ) * znear;
   left = - top * ratio;
-  //S60 :DONE redo for gles
   glFrustumf(left, -left, -top, top, znear, zfar);
 }
 

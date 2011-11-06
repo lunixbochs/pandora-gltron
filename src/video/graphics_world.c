@@ -33,13 +33,6 @@ void drawWalls(void) {
 #define T_TOP 1.0f
   //R.K. first Wall
   glBindTexture(GL_TEXTURE_2D, gScreen->textures[TEX_WALL1]);
-  //TODO:DONE Redo for GLES
-  /*glBegin(GL_QUADS);
-  glTexCoord2f(t, 0.0); glVertex3f(0.0, 0.0, 0.0);
-  glTexCoord2f(t, T_TOP); glVertex3f(0.0, 0.0, h);
-  glTexCoord2f(0.0, T_TOP); glVertex3f(game2->rules.grid_size, 0.0, h);
-  glTexCoord2f(0.0, 0.0); glVertex3f(game2->rules.grid_size, 0.0, 0.0);
-  glEnd();*/
   
   FillVertex2v(texture[0],t,0.0);
   FillVertex3v(verts[0],0.0,0.0,0.0);
@@ -229,20 +222,6 @@ int drawFloorTextured(int grid_size, GLuint texture) {
     t = l / 12;
     
      for (i = 0; i < grid_size; i += l) {
-    	//TODO:DONE Redo for GLES
-      /*glBegin(GL_QUADS);
-      for (j = 0; j < grid_size; j += l) {
-        glTexCoord2i(0, 0);
-        glVertex2i(i, j);
-        glTexCoord2i(t, 0);
-        glVertex2i(i + l, j);
-        glTexCoord2i(t, t);
-        glVertex2i(i + l, j + l);
-        glTexCoord2i(0, t);
-        glVertex2i(i, j + l);
-      }
-      glEnd();*/
-    	 
     	 for (j = 0; j < grid_size; j += l) {
     		 //draw_textured_rectangle_size2vi(0,0,t,t,i, j,i + l, j + l);
     		 
@@ -281,31 +260,7 @@ void drawFloorGrid(int grid_size,  int line_spacing,
   int i, j;
   
   gl2gles_vertex3vx verts[4];
-  
   gl2gles_color trail_tops[4];
-  
-  //TODO:DONE redo for gles
-  /*glColor3fv(line_color);
-  
-  glFogfv(GL_FOG_COLOR, square_color);
-  glFogi(GL_FOG_MODE, GL_LINEAR);
-  glFogi(GL_FOG_START, 100);
-  glFogi(GL_FOG_END, 350);
-
-  glEnable(GL_FOG);
-
-  glBegin(GL_LINES);
-  for (i = 0; i < grid_size; i += line_spacing) {
-    for (j = 0; j < grid_size; j += line_spacing) {
-      glVertex3i(i, j, 0);
-      glVertex3i(i + line_spacing, j, 0);
-      glVertex3i(i, j, 0);
-      glVertex3i(i, j + line_spacing, 0);
-    }
-  }
-  glEnd();
-
-  glDisable(GL_FOG);*/
   
   glDisableClientState (GL_TEXTURE_COORD_ARRAY);
   

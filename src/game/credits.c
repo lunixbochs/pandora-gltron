@@ -64,10 +64,10 @@ void drawCredits(void) {
   rasonly(gScreen);
   h = gScreen->vp_h / (24 * 3 / 2);
   for(i = 0; i < time / 250; i++) {
-	 float *tcolors=colors[i % 2];
-	//TODO: TEST THIS on GLES!
-	 glColor4f(tcolors[0],tcolors[1],tcolors[2],1.0);
-    //glColor3fv(colors[i % 2]);
+    float *tcolors=colors[i % 2];
+    //TODO: TEST THIS on GLES!
+    glColor4f(tcolors[0],tcolors[1],tcolors[2],1.0);
+
     if(credits[i] == NULL) 
       break;
     x = 10;

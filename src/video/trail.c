@@ -116,32 +116,6 @@ void drawTrailLines(Player *p, PlayerVisual *pV) {
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   glDisable(GL_LIGHTING);
 
-  //TODO:DONE redo for gles
-  /*glBegin(GL_LINES);
-
-  s = data->trails;
-  while(s != data->trails + data->trailOffset) { 
-		// the current line is not drawn 
-    // compute distance from line to eye point
-    dist = getDist(s, cam->cam);
-		alpha = (game2->rules.grid_size - dist / 2) / game2->rules.grid_size;
-    // trail_top[3] = alpha;
-    glColor4fv(trail_top);
-    
-    if(s->vDirection.v[1] == 0) normal = normal1;
-    else normal = normal2;
-    glNormal3fv(normal);
-    glVertex3f(s->vStart.v[0],
-							 s->vStart.v[1],
-							 height);
-    glVertex3f(s->vStart.v[0] + s->vDirection.v[0],
-							 s->vStart.v[1] + s->vDirection.v[1],
-							 height);
-    s++;
-    polycount++;
-  }
-  glEnd();*/
-
   glEnableClientState (GL_VERTEX_ARRAY);
   glEnableClientState (GL_COLOR_ARRAY);
   
@@ -196,22 +170,7 @@ void drawTrailLines(Player *p, PlayerVisual *pV) {
   /* compute distance from line to eye point */
   dist = getDist(s, cam->cam);
   alpha = (game2->rules.grid_size - dist / 2) / game2->rules.grid_size;
-	// trail_top[3] = alpha;
-  //TODO:DONE Redo for gles
-  /*glColor4fv(trail_top);
 
-  glBegin(GL_LINES);
-
-	glVertex3f(s->vStart.v[0],
-						 s->vStart.v[1],
-						 height);
-  glVertex3f( getSegmentEndX(data, 0),
-	      getSegmentEndY(data, 0),
-	      height );
-
-  glEnd();
-*/
-  
   glColorPointer(4,GL_FLOAT,0,trail_tops);
   tempvertex[0].x = s->vStart.v[0];
   tempvertex[0].y = s->vStart.v[1];
@@ -251,13 +210,11 @@ void drawTrailShadow(Player* p, PlayerVisual *pV) {
     glStencilOp(GL_REPLACE, GL_REPLACE, GL_REPLACE);
     glStencilFunc(GL_GREATER, 1, 1);
     glEnable(GL_BLEND);
-    //TODO:DONE REdo for gles
+
     glColor4fv(shadow_color);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   } else {
-	//TODO: Check this
-	  glColor4f(0, 0, 0, 1.0);
-    //glColor3f(0, 0, 0);
+    glColor4f(0, 0, 0, 1.0);
     glDisable(GL_BLEND);
   }
 
@@ -267,30 +224,30 @@ void drawTrailShadow(Player* p, PlayerVisual *pV) {
   glMultMatrixf(shadow_matrix);
 
   /* geometry */
-	{
-		int vOffset = 0;
-		int iOffset = 0;
+  {
+    int vOffset = 0;
+    int iOffset = 0;
 
-		TrailMesh mesh;
-		mesh.pVertices = (vec3*) malloc(1000 * sizeof(vec3));
-		mesh.pNormals = (vec3*) malloc(1000 * sizeof(vec3));
-		mesh.pColors = (unsigned char*) malloc(1000 * 4 * sizeof(float));
-		mesh.pTexCoords = (vec2*) malloc(1000 * sizeof(vec2));
-		mesh.pIndices = (unsigned short*) malloc(1000 * 2);
-		mesh.iUsed = 0;
-		
-		trailGeometry(p, pV, &mesh, &vOffset, &iOffset);
-		bowGeometry(p, pV, &mesh, &vOffset, &iOffset);
-		trailStatesShadowed();
-		trailRender(&mesh);
-		// no states restore, because we're drawing shadowed geometry
+    TrailMesh mesh;
+    mesh.pVertices = (vec3*) malloc(1000 * sizeof(vec3));
+    mesh.pNormals = (vec3*) malloc(1000 * sizeof(vec3));
+    mesh.pColors = (unsigned char*) malloc(1000 * 4 * sizeof(float));
+    mesh.pTexCoords = (vec2*) malloc(1000 * sizeof(vec2));
+    mesh.pIndices = (unsigned short*) malloc(1000 * 2);
+    mesh.iUsed = 0;
+    
+    trailGeometry(p, pV, &mesh, &vOffset, &iOffset);
+    bowGeometry(p, pV, &mesh, &vOffset, &iOffset);
+    trailStatesShadowed();
+    trailRender(&mesh);
+    // no states restore, because we're drawing shadowed geometry
 
-		free(mesh.pVertices);
-		free(mesh.pNormals);
-		free(mesh.pColors);
-		free(mesh.pTexCoords);
-		free(mesh.pIndices);
-	}
+    free(mesh.pVertices);
+    free(mesh.pNormals);
+    free(mesh.pColors);
+    free(mesh.pTexCoords);
+    free(mesh.pIndices);
+  }
 
   /* restore */
 

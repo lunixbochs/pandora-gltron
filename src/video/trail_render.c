@@ -21,7 +21,7 @@ void trailStatesNormal(Player *pPlayer, int texture) {
 	{ 
 		float black[] = { 0, 0, 0, 1 };
 		glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, black);
-		//TODO: Redo for gles
+		//TODO: redo for GLES
 		//glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
 		glEnable(GL_COLOR_MATERIAL);
 	}
@@ -52,7 +52,7 @@ void trailStatesRestore(void) {
 	glDisable(GL_TEXTURE_2D);
 	glDisable(GL_BLEND);
 	glEnable(GL_LIGHTING);
-	//TODO: REdo for GLES
+	//TODO: redo for GLES
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 

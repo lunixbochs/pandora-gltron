@@ -47,7 +47,7 @@ void drawRecognizerShadow(void) {
     glStencilOp(GL_REPLACE, GL_REPLACE, GL_REPLACE);
     glStencilFunc(GL_GREATER, 1, 1);
     glEnable(GL_BLEND);
-    //TODO:DONE Redo in gles
+
     glColor4fv(shadow_color);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   } else {
