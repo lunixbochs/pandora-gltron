@@ -13,7 +13,7 @@ void audioInit(void) {
 }
 
 void videoInit(void) {
-  if(SDL_Init(SDL_INIT_VIDEO) < 0 ) {
+  if(SDL_Init(SDL_INIT_VIDEO) < 0 || !EGL_Open()) {
     fprintf(stderr, "Couldn't initialize SDL video: %s\n", SDL_GetError());
     exit(1); /* OK: critical, no visual */
   }

@@ -9,6 +9,8 @@ static int redisplay = 0;
 
 void SystemExit() {
   fprintf(stderr, "[system] shutting down SDL now\n");
+  EGL_Destroy();
+
   SDL_Quit();
   fprintf(stderr, "[system] exiting application\n");
 }
