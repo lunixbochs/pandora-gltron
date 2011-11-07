@@ -56,7 +56,7 @@ void keyboardPause(int state, int key, int x, int y) {
 
 void initPause(void) {
   SystemHidePointer();
-  SystemWarpPointer(MOUSE_ORIG_X, MOUSE_ORIG_Y);
+  // SystemWarpPointer(MOUSE_ORIG_X, MOUSE_ORIG_Y);
 
   /* disable game sound effects */
   Audio_DisableEngine();

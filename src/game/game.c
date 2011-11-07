@@ -17,7 +17,7 @@ void enterGame(void) { /* called when game mode is entered */
   updateSettingsCache();
 
   SystemHidePointer();
-  SystemWarpPointer(MOUSE_ORIG_X, MOUSE_ORIG_Y);
+  // SystemWarpPointer(MOUSE_ORIG_X, MOUSE_ORIG_Y);
   game2->time.offset = SystemGetElapsedTime() - game2->time.current;
   Audio_EnableEngine();
  
@@ -55,7 +55,7 @@ void gameMouseMotion(int x, int y) {
        if(cam_chi < CAM_CHI_MIN) cam_chi = CAM_CHI_MIN;
        if(cam_chi > CAM_CHI_MAX) cam_chi = CAM_CHI_MAX;
     */
-    SystemWarpPointer(MOUSE_ORIG_X, MOUSE_ORIG_Y);
+    // SystemWarpPointer(MOUSE_ORIG_X, MOUSE_ORIG_Y);
   }
 }
 
