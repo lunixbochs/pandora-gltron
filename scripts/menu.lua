@@ -517,7 +517,8 @@ Menu.Previous = function ()
 								end
 
 -- Menu entries
-Menu.RootMenu.items = { "GameMenu", "VideoMenu", "AudioMenu", "Quit" }
+-- Menu.RootMenu.items = { "GameMenu", "VideoMenu", "AudioMenu", "Quit" }
+Menu.RootMenu.items = { "GameMenu", "AudioMenu", "Quit" }
 
 Menu.GameMenu.items = { 
    "StartGame", "ResetScores", "GameRulesMenu", 
