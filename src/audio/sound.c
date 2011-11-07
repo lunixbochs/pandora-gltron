@@ -39,9 +39,13 @@ void Sound_reloadTrack(void) {
   char *path;
 	scripting_GetGlobal("settings", "current_track", NULL);
   scripting_GetStringResult(&song);
+  // TODO: fix the song loading
+  free(song);
+
+  song = "song_revenge_of_cats.it";
   fprintf(stderr, "[sound] loading song %s\n", song);
   path = getPath( PATH_MUSIC, song );
-  free(song);
+//  free(song);
   if(path == NULL) {
     fprintf(stderr, "[sound] can't find song...exiting\n");
     exit(1); // FIXME: handle missing song somewhere else
