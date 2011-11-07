@@ -27,11 +27,15 @@ void SystemWarpPointer(int x, int y) {
 }
 
 void SystemHidePointer() {
-  SDL_ShowCursor(SDL_DISABLE);
+#if 0
+  EGL_HideCursor();
+#endif
 }
 
 void SystemUnhidePointer() {
-  SDL_ShowCursor(SDL_ENABLE);
+#if 0
+  EGL_ShowCursor();
+#endif
 }
 
 void SystemMouse(int buttons, int state, int x, int y) {
@@ -163,7 +167,7 @@ void SystemHandleInput(SDL_Event *event) {
 								event->button.x, event->button.y);
 		break;
 	case SDL_MOUSEMOTION:
-		SystemMouseMotion(event->motion.x, event->motion.y);
+		// SystemMouseMotion(event->motion.x, event->motion.y);
 		break;
 	}
 }

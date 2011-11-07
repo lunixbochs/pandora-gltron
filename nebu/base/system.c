@@ -23,26 +23,26 @@ unsigned int SystemGetElapsedTime() {
 int SystemMainLoop() {
   SDL_Event event;
   
-	return_code = -1;
+  return_code = -1;
   while(return_code == -1) {
     while(SDL_PollEvent(&event) && current) {
-			switch(event.type) {
-			case SDL_KEYDOWN:
-			case SDL_KEYUP:
-			case SDL_JOYAXISMOTION:
-			case SDL_JOYBUTTONDOWN:
-			case SDL_JOYBUTTONUP:
-			case SDL_MOUSEBUTTONUP:
-			case SDL_MOUSEBUTTONDOWN:
-			case SDL_MOUSEMOTION:
-				SystemHandleInput(&event);
-				break;
-			case SDL_QUIT:
-				SystemExit();
-				break;
-			default:
-				/* ignore event */
-				break;
+      switch(event.type) {
+      case SDL_KEYDOWN:
+      case SDL_KEYUP:
+      case SDL_JOYAXISMOTION:
+      case SDL_JOYBUTTONDOWN:
+      case SDL_JOYBUTTONUP:
+      case SDL_MOUSEBUTTONUP:
+      case SDL_MOUSEBUTTONDOWN:
+      //case SDL_MOUSEMOTION:
+        SystemHandleInput(&event);
+        break;
+      case SDL_QUIT:
+        SystemExit();
+        break;
+      default:
+        /* ignore event */
+        break;
       }
     }
     if(redisplay) {
@@ -51,9 +51,9 @@ int SystemMainLoop() {
     } else
       current->idle();
   }
-	if(current->exit)
-		(current->exit)();
-	return return_code;
+  if(current->exit)
+    (current->exit)();
+  return return_code;
 }
   
 void SystemRegisterCallbacks(Callbacks *cb) {
