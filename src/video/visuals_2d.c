@@ -69,15 +69,10 @@ void draw2D( Visual *d ) {
 			//draw_rectangle2v(0,0,w,h);
 
 			FillVertex2v(verts[0],0,0);
-			
 			FillVertex2v(verts[1],w,0);
-			
 			FillVertex2v(verts[2],w,h);
-			
 			FillVertex2v(verts[3],w,h);
-			
 			FillVertex2v(verts[4],0,h);
-			
 			FillVertex2v(verts[5],0,0);
 			
 			glVertexPointer	(2,GL_FLOAT,0,verts);  
@@ -90,14 +85,6 @@ void draw2D( Visual *d ) {
 		{
 				float w = game2->grid.width;
 				float h = game2->grid.height;
-				//TODO: redo for gles
-				/*glColor3f(1, 1, 1);
-				glBegin(GL_LINE_LOOP);
-				glVertex3f( 0, 0, 0 );
-				glVertex3f( w, 0, 0 );
-				glVertex3f( w, h, 0 );
-				glVertex3f( 0, h, 0 );
-				glEnd();*/
 				
 				glColor3f(1, 1, 1);
 				FillVertex3v(fVerts[0],0,0,0);
@@ -150,62 +137,54 @@ void draw2D( Visual *d ) {
 
 		glDrawArrays(GL_POINTS, 0, 1);
 
-		/*
-		 glBegin(GL_LINES);
-		 for(trail = p->data->trails; trail != p->data->trails + p->data->trailOffset; trail++)
-		 {
-		 glVertex2f(trail->vStart.v[0], 
-		 trail->vStart.v[1]
-		 );
-		 glVertex2f(trail->vStart.v[0] + trail->vDirection.v[0], 
-		 trail->vStart.v[1] + trail->vDirection.v[1]
-		 );
-		 }
-		 if(trail != p->data->trails)
-		 {
-		 trail--;
-		 glVertex2f(trail->vStart.v[0] + trail->vDirection.v[0], 
-		 trail->vStart.v[1] + trail->vDirection.v[1]
-		 );
-		 glVertex2f( floorf(x), floorf(y));
-		 }
-		 else
-		 {
-		 glVertex2f(trail->vStart.v[0], 
-		 trail->vStart.v[1]
-		 );
-		 glVertex2f( floorf(x), floorf(y));
-		 } */
+/*
+		glBegin(GL_LINES);
+		for(trail = p->data->trails; trail != p->data->trails + p->data->trailOffset; trail++)
+		{
+			glVertex2f(trail->vStart.v[0], trail->vStart.v[1] );
+			glVertex2f(trail->vStart.v[0] + trail->vDirection.v[0], 
+					trail->vStart.v[1] + trail->vDirection.v[1]  );
+		}
+		if(trail != p->data->trails)
+		{
+			trail--;
+			glVertex2f(trail->vStart.v[0] + trail->vDirection.v[0], 
+				trail->vStart.v[1] + trail->vDirection.v[1] );
+			glVertex2f( floorf(x), floorf(y));
+		}
+		else
+		{
+			glVertex2f(trail->vStart.v[0], trail->vStart.v[1] );
+			glVertex2f( floorf(x), floorf(y));
+		}
+*/
 
 		size_array=(p->data->trailOffset+1)<<1;
 		pVerts = (gl2gles_vertex2v *)malloc(sizeof(gl2gles_vertex2v)*size_array);
 		
-		for (trail = p->data->trails,j=0; trail != p->data->trails
-				+ p->data->trailOffset; trail++,j+=2)
+		for (trail = p->data->trails,j=0; trail != p->data->trails + p->data->trailOffset; trail++,j+=2)
 		{
 			glfX=trail->vStart.v[0];
 			glfY=trail->vStart.v[1];
+
 			FillVertex2v(pVerts[j],glfX,glfY);
 			FillVertex2v(pVerts[j+1],glfX+trail->vDirection.v[0],glfY+trail->vDirection.v[1]);
-			
 		}
+
 		if (trail != p->data->trails)
 		{
 			trail--;
-			
-			FillVertex2v(pVerts[j-2],trail->vStart.v[0] + trail->vDirection.v[0],
-					trail->vStart.v[1] + trail->vDirection.v[1]);
-			FillVertex2v(pVerts[j-1],floorf(x), floorf(y));
+			FillVertex2v(pVerts[j],trail->vStart.v[0] + trail->vDirection.v[0],
+                                       trail->vStart.v[1] + trail->vDirection.v[1]);
+			FillVertex2v(pVerts[j+1], floorf(x), floorf(y));
 		}
 		else
 		{
-			
-			FillVertex2v(pVerts[j],trail->vStart.v[0], trail->vStart.v[1]);
-			FillVertex2v(pVerts[j+1],floorf(x), floorf(y));
+			FillVertex2v(pVerts[j], trail->vStart.v[0], trail->vStart.v[1]);
+			FillVertex2v(pVerts[j+1], floorf(x), floorf(y));
 		}
-				
-		glVertexPointer(2, GL_FLOAT,0, pVerts);
 
+		glVertexPointer(2, GL_FLOAT, 0, pVerts);
 		glDrawArrays(GL_LINES, 0, size_array);
 		
 		free(pVerts);
@@ -240,4 +219,4 @@ void draw2D( Visual *d ) {
 		}
 		glDisable(GL_BLEND);
 }
-	
+
