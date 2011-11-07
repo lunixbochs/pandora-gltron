@@ -30,6 +30,7 @@ extern "C" {
 #include <GLES/gl.h>
 #include <EGL/egl.h>
 #include <SDL/SDL_syswm.h>
+#include <X11/Xlib.h>
 
 void EGL_Destroy( void );
 int EGL_Open( void );

@@ -19,7 +19,6 @@
 */
 
 #include "eglport.h"
-#include <X11/Xlib.h>
 
 /* Pandora VSync */
 #include <fcntl.h>
@@ -44,7 +43,6 @@ EGLSurface g_eglSurface = 0;
 int g_totalConfigsFound = 0;
 EGLConfig g_allConfigs[g_totalConfigsIn];
 Display *g_x11Display = NULL;
-
 
 /*======================================================
  * Kill off any opengl specific details
@@ -255,3 +253,4 @@ int TestEGLError( void )
 
 	return 1;
 }
+
